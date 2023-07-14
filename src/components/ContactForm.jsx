@@ -5,7 +5,7 @@ import css from './ContactForm.module.css';
 
 const INITIAL_STATE = {
   name: '',
-  // phone: '',
+  number: '',
 };
 
 class ContactForm extends Component {
@@ -17,7 +17,7 @@ class ContactForm extends Component {
     e.preventDefault();
 
     const { addContact } = this.props;
-    addContact(nanoid(), this.state.name);
+    addContact(nanoid(), this.state.name, this.state.number);
 
     // zresetuje cały formularz po wysłaniu
     this.setState(prev => ({ ...INITIAL_STATE }));
@@ -27,7 +27,10 @@ class ContactForm extends Component {
   handleChange = e => {
     const { name, value } = e.target;
 
-    this.setState(prevState => ({ ...prevState, [name]: value }));
+    this.setState(prevState => ({
+      ...prevState,
+      [name]: value,
+    }));
   };
 
   render() {
@@ -35,9 +38,8 @@ class ContactForm extends Component {
       <div>
         <h2>Phonebook</h2>
         <form onSubmit={this.handleSubmit}>
-          <label htmlFor={'labelName'}>Name</label>
+          <label>Name</label>
           <input
-            id={'labelName'}
             type="text"
             name="name"
             value={this.state.name}
@@ -46,12 +48,16 @@ class ContactForm extends Component {
             title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
             required
           />
-          {/* <input
+          <label>Number</label>
+          <input
             type="tel"
-            name="phone"
-            value={this.state['phone']}
+            name="number"
+            value={this.state.number}
             onChange={this.handleChange}
-          /> */}
+            pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+            title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+            required
+          />
           <button type="submit">Add contact</button>
         </form>
       </div>

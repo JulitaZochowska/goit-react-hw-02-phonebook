@@ -6,15 +6,17 @@ export class App extends Component {
   state = {
     contacts: [],
     name: '',
+    number: '',
   };
 
-  addContact = (id, name) => {
+  addContact = (id, name, number) => {
     this.setState(prevState => ({
       contacts: [
         ...prevState.contacts,
         {
           id: id,
           name: name,
+          number: number,
         },
       ],
     }));
