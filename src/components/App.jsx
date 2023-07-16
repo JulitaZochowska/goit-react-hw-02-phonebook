@@ -1,5 +1,6 @@
 import ContactForm from './ContactForm';
 import ContactList from './ContactList';
+import Filter from './Filter';
 import React, { Component } from 'react';
 
 export class App extends Component {
@@ -11,20 +12,31 @@ export class App extends Component {
       { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
     ],
     filter: '',
-    name: '',
-    number: '',
   };
 
   addContact = (id, name, number) => {
+    // map jest by zrobić tablicę name'ów a bez map byłaby tablica obiektów (obiekt zawiera id, name...)
+    if (this.state.contacts.map(contact => contact.name).includes(name)) {
+      // alert to funkcja!!!
+      alert(`${name} is already in contacts.`);
+    } else {
+      this.setState(prevState => ({
+        contacts: [
+          ...prevState.contacts,
+          {
+            id: id,
+            name: name,
+            number: number,
+          },
+        ],
+      }));
+    }
+  };
+
+  setFilter = event => {
     this.setState(prevState => ({
-      contacts: [
-        ...prevState.contacts,
-        {
-          id: id,
-          name: name,
-          number: number,
-        },
-      ],
+      ...prevState,
+      filter: event.target.value,
     }));
   };
 
@@ -41,8 +53,15 @@ export class App extends Component {
           flexDirection: 'column',
         }}
       >
+        <h1>Phonebook</h1>
         <ContactForm addContact={this.addContact} />
-        <ContactList contacts={this.state.contacts} />
+
+        <h2>Contacts</h2>
+        <Filter filter={this.state.filter} setFilter={this.setFilter} />
+        <ContactList
+          contacts={this.state.contacts}
+          filter={this.state.filter}
+        />
       </div>
     );
   }
