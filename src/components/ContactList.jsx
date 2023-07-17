@@ -23,6 +23,13 @@ class ContactList extends Component {
         {this.filterContacts(this.props.contacts).map(contact => (
           <li key={contact.id}>
             {contact.name} {contact.number}
+            <button
+              onClick={() => {
+                this.props.deleteContact(contact.id);
+              }}
+            >
+              Delete
+            </button>
           </li>
         ))}
       </ul>
