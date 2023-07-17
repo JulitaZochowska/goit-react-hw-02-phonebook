@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { nanoid } from 'nanoid';
 import PropTypes from 'prop-types';
 
-import './ContactForm.module.css';
+import css from './ContactForm.module.css';
 
 const INITIAL_STATE = {
   name: '',
@@ -36,9 +36,10 @@ class ContactForm extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form className={css.form} onSubmit={this.handleSubmit}>
         <label>Name</label>
         <input
+          className={css.input}
           type="text"
           name="name"
           value={this.state.name}
@@ -49,6 +50,7 @@ class ContactForm extends Component {
         />
         <label>Number</label>
         <input
+          className={css.input}
           type="tel"
           name="number"
           value={this.state.number}
@@ -57,7 +59,9 @@ class ContactForm extends Component {
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
           required
         />
-        <button type="submit">Add contact</button>
+        <button className={css.button} type="submit">
+          Add contact
+        </button>
       </form>
     );
   }
@@ -67,3 +71,7 @@ ContactForm.propTypes = {
   addContact: PropTypes.func,
 };
 export default ContactForm;
+
+{
+  /* <li className={css.item}> */
+}

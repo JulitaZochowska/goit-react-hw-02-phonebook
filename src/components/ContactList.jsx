@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import css from './ContactList.module.css';
 
 class ContactList extends Component {
   filterContacts = contacts =>
@@ -22,9 +23,10 @@ class ContactList extends Component {
         {/* filtruje wszystko co przychodzi z API, to co przychodzi z API jest w nawiasie */}
         {/* (this.props.contact)to to, co przychodzi z API */}
         {this.filterContacts(this.props.contacts).map(contact => (
-          <li key={contact.id}>
+          <li className={css.contact} key={contact.id}>
             {contact.name}: {contact.number}&nbsp;
             <button
+              className={css.button}
               onClick={() => {
                 this.props.deleteContact(contact.id);
               }}

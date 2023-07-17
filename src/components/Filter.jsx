@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import css from './Filter.module.css';
 
 class Filter extends Component {
   render() {
@@ -9,6 +10,7 @@ class Filter extends Component {
         <label>Find contacts by name</label>
         <br />
         <input
+          className={css.input}
           type="text"
           name="filter"
           value={filter}
