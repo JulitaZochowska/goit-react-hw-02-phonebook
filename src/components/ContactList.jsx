@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class ContactList extends Component {
   filterContacts = contacts =>
@@ -22,7 +23,7 @@ class ContactList extends Component {
         {/* (this.props.contact)to to, co przychodzi z API */}
         {this.filterContacts(this.props.contacts).map(contact => (
           <li key={contact.id}>
-            {contact.name} {contact.number}
+            {contact.name}: {contact.number}&nbsp;
             <button
               onClick={() => {
                 this.props.deleteContact(contact.id);
@@ -36,4 +37,16 @@ class ContactList extends Component {
     );
   }
 }
+
+ContactList.propTypes = {
+  filter: PropTypes.string,
+  deleteContact: PropTypes.func,
+  contacts: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string,
+      name: PropTypes.string,
+      number: PropTypes.string,
+    })
+  ),
+};
 export default ContactList;

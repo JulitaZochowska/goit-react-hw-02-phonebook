@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class Filter extends Component {
   render() {
@@ -6,6 +7,7 @@ class Filter extends Component {
     return (
       <div>
         <label>Find contacts by name</label>
+        <br />
         <input
           type="text"
           name="filter"
@@ -20,4 +22,8 @@ class Filter extends Component {
   }
 }
 
+Filter.propTypes = {
+  filter: PropTypes.string,
+  setFilter: PropTypes.func,
+};
 export default Filter;

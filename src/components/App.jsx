@@ -57,10 +57,11 @@ export class App extends Component {
           height: '100vh',
           display: 'flex',
           justifyContent: 'center',
-          alignItems: 'center',
+          alignItems: 'left',
           fontSize: 40,
           color: '#010101',
           flexDirection: 'column',
+          marginLeft: '45px',
         }}
       >
         <h1>Phonebook</h1>
