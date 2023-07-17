@@ -71,7 +71,3 @@ ContactForm.propTypes = {
   addContact: PropTypes.func,
 };
 export default ContactForm;
-
-{
-  /* <li className={css.item}> */
-}
